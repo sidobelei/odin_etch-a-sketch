@@ -20,6 +20,7 @@ function addGrid(dimension) {
         for (let i = 0; i < dimension; i++) {
             const square = document.createElement("div");
             square.classList.add("square", "off");
+            square.setAttribute("style", "opacity: 1");
             square.addEventListener("mouseover", changeColor);
             row.appendChild(square);
         } 
@@ -45,6 +46,22 @@ function changeColor(event) {
                     event.target.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
                     classes.add("on");
                     break;
+                case "darken":
+                    let newOpacity = event.target.style.opacity;
+                    newOpacity = Number(newOpacity);
+                    if (newOpacity === 1 && event.target.style.backgroundColor != "black") {
+                        event.target.style.opacity = 0.1;
+                        event.target.style.backgroundColor = "black";
+                        classes.add("off");
+                    }
+                    else if (newOpacity < 1) {
+                        newOpacity = newOpacity + 0.1;
+                        event.target.style.opacity = `${newOpacity}`;
+                        classes.add("off");
+                    }
+                    else {
+                        classes.add("on");
+                    }    
                 }
         }
     }
@@ -55,7 +72,6 @@ function changeGrid() {
     let gridSize = window.prompt("Select a new grid size (1-100):");
     gridSize = Number(gridSize);
     if (Number.isInteger(gridSize) === true){
-        console.log('is number');
         if (gridSize >= 1 && gridSize <=100) {
             let rows = document.querySelectorAll(".row");
             for (let i = 0; i < rows.length; i++) {
