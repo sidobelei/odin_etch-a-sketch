@@ -1,5 +1,6 @@
 const container = document.querySelector(".container");
 const defaultDimension = 16;
+let isNumber = false;
 
 addGrid(defaultDimension);
 
@@ -22,4 +23,19 @@ function addGrid(dimension) {
 
 function changeColor(event) {
     event.target.style.backgroundColor = "black";
+}
+
+function changeGrid() {
+    let gridSize = window.prompt("Select a new grid size (1-100):");
+    gridSize = Number(gridSize);
+    if (Number.isInteger(gridSize) === true){
+        console.log('is number');
+        if (gridSize >= 1 && gridSize <=100) {
+            let rows = document.querySelectorAll(".row");
+            for (let i = 0; i < rows.length; i++) {
+                rows[i].remove();
+            }
+            addGrid(gridSize);
+        }
+    }
 }
