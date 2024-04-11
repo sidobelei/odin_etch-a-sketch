@@ -1,6 +1,6 @@
 const container = document.querySelector(".container");
 const defaultDimension = 16;
-let currentDimension = 16;
+let currentDimension = defaultDimension;
 let mode = "default";
 const changeModeBtns = document.querySelectorAll(".changeMode");
 for (let i = 0; i < changeModeBtns.length; i++) {
