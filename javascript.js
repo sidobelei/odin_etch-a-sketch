@@ -1,16 +1,17 @@
 const container = document.querySelector(".container");
 const defaultDimension = 16;
+let currentDimension = 16;
 let mode = "default";
 const changeModeBtns = document.querySelectorAll(".changeMode");
 for (let i = 0; i < changeModeBtns.length; i++) {
     changeModeBtns[i].addEventListener("click", function(event){
         let newMode = event.target.id;
         mode = newMode;
+        changeGrid(currentDimension);
     })
 }
 
 addGrid(defaultDimension);
-
 
 function addGrid(dimension) {
     let rowCount = dimension;
@@ -68,15 +69,22 @@ function changeColor(event) {
 
 }
 
-function changeGrid() {
-    let gridSize = window.prompt("Select a new grid size (1-100):");
-    gridSize = Number(gridSize);
+function changeGrid(dimension) {
+    let gridSize;
+    if (dimension) {
+        gridSize = currentDimension;
+    }
+    else {
+        gridSize = window.prompt("Select a new grid size (1-100):");
+        gridSize = Number(gridSize);
+    }
     if (Number.isInteger(gridSize) === true){
         if (gridSize >= 1 && gridSize <=100) {
             let rows = document.querySelectorAll(".row");
             for (let i = 0; i < rows.length; i++) {
                 rows[i].remove();
             }
+            currentDimension = gridSize;
             addGrid(gridSize);
         }
     }
