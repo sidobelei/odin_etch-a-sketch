@@ -1,19 +1,43 @@
+body {
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header-container, .button-container {
+    margin-bottom: 20px;
+}
+
+h1 {
+    color:gold;
+    font-size: 40px;
+    margin: 0px;
+}
+
+.button-container {
+    display:flex;
+    justify-content: space-between;
+    width: 500px;
+
+}
 .container {
     display: flex;
     flex-direction: column;
     margin: auto;
     height: 500px;
     width: 500px;
+    background-color: lightgray;
+    border: 1px solid black;
 }
 
 .row {
     box-sizing: border-box;
     display: flex;
-    height: 25px;
+    width: 100%;
+    flex: 1;
 }
 
 .square {
     box-sizing: border-box;
-    width: 25px;
-    height: 25px;
+    flex: 1;
 }
